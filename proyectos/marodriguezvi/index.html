@@ -12,13 +12,13 @@
 	<div class="contenedor">
 		<header class="header">
 			<nav class="nav">
-			<span class="menu-open icono-grande" id="btn-menu-opne">
+			<span class="menu-open icono-grande" id="btn-menu-open">
 				<i class="fe fe-list-bullet"></i>
 			</span>
 			<span class="nav-toggle icono-grande" id="btn-menu-toggle">
 				<i class="fe fe-bar"></i>
 			</span>
-				<ul class="nav-links lista-links">
+				<ul class="nav-links lista-links" id="nav-links">
 					<li><a href="#">Inicio</a></li>
 					<li><a href="#">Contacto</a></li>
 					<li><a href="#">Dudas</a></li>
@@ -30,7 +30,7 @@
 			<span class="menu-close" id="btn-menu-close">
 				<i class="fe fe-close"></i>
 			</span>
-			<ul class="menu-links lista-links">
+			<ul class="menu-links lista-links" id="menu-links">
 				<li><a href="#">Java</a></li>
 				<li><a href="#">C++</a></li>
 				<li><a href="#">React</a></li>
@@ -44,12 +44,13 @@
 				</p>
 			</div>
 			<div class="contenedor-iframe">
-				<iframe id="iframe" src="https://angular.io"></iframe>
+				<iframe id="iframe" name="main-iframe" src="https://angular.io"></iframe>
 			</div>
 		</section>
 		<footer class="footer">
 			<p>Hecho por Mauricio Rodriguez Vinasco - &copy; 2018</p>
 		</footer>
 	</div>
+	<script src="assets/js/script.js"></script>
 </body>
 </html>
