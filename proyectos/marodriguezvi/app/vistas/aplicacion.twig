@@ -1,56 +1,49 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible">
-	<title>Repositorio de actividades educativas</title>
-	<link rel="stylesheet" type="text/css" href="assets/ext/feathericon/css/feathericon.min.css">
-	<link rel="stylesheet" href="assets/css/estilos.css">
-</head>
-<body>
-	<div class="contenedor">
-		<header class="header">
-			<nav class="nav">
-			<span class="menu-open icono-grande" id="btn-menu-open">
-				<i class="fe fe-list-bullet"></i>
-			</span>
-			<span class="nav-toggle icono-grande" id="btn-menu-toggle">
-				<i class="fe fe-bar"></i>
-			</span>
-				<ul class="nav-links lista-links" id="nav-links">
-					<li><a href="#">Inicio</a></li>
-					<li><a href="#">Contacto</a></li>
-					<li><a href="#">Dudas</a></li>
-					<li><a href="#">Nueva actividad</a></li>
-				</ul>
-			</nav>
-		</header>
-		<div class="menu" id="menu-lateral">
-			<span class="menu-close" id="btn-menu-close">
-				<i class="fe fe-close"></i>
-			</span>
-			<ul class="menu-links lista-links" id="menu-links">
-				<li><a href="#">Java</a></li>
-				<li><a href="#">C++</a></li>
-				<li><a href="#">React</a></li>
-				<li><a href="#">Python</a></li>
-				<li><a href="#">Sanic</a></li>
-			</ul>
-		</div>
-		<section class="main">
-			<div class="instruccion">
-				<p>La mayoría de diseñadores web profesionales creen que CSS carece de un mecanismo fundamental para facilitar su trabajo: las variables en las hojas de estilos. Cuando se define una hoja de estilos como la siguiente:
-				</p>
-			</div>
-			<div class="contenedor-iframe">
-				<iframe id="iframe" name="main-iframe" src="https://angular.io"></iframe>
-			</div>
-		</section>
-		<footer class="footer">
-			<p>Hecho por Mauricio Rodriguez Vinasco - &copy; 2018</p>
-		</footer>
-	</div>
-	<script src="assets/js/script.js"></script>
-</body>
-</html>
+{% extends "plantillas/base.twig" %}
+
+{% block titulo %}Aplicación de Repositorio{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ constant('APP_URL') }}assets/css/aplicacion.css">
+{% endblock %}
+
+{% block contenido %}
+    <div class="contenedor">
+        <header class="header">
+            <nav class="nav">
+                <span class="menu-open icono-grande" id="btn-menu-open">
+                    <i class="fe fe-list-bullet"></i>
+                </span>
+                <span class="nav-toggle icono-grande" id="btn-menu-toggle">
+                    <i class="fe fe-bar"></i>
+                </span>
+                <ul class="nav-links lista-links" id="nav-links">
+                    <li><a href="{{ path_for('inicio') }}">Inicio</a></li>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Dudas</a></li>
+                    <li><a href="#">Nueva actividad</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="menu" id="menu-lateral" data-url="{{ path_for('aplicacion.actividades') }}">
+            <span class="menu-close" id="btn-menu-close">
+                <i class="fe fe-close"></i>
+            </span>
+            <ul class="menu-links lista-links" id="menu-links"></ul>
+        </div>
+        <section class="main">
+            <div class="instruccion">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti harum id totam atque, debitis repudiandae quia asperiores, iusto nihil ad animi non praesentium in ut magni nisi at. Earum, enim!</p>
+            </div>
+            <div class="contenedor-iframe">
+                <iframe id="iframe" name="main-iframe" src=""></iframe>
+            </div>
+        </section>
+        {% include "fragmentos/footer.twig" %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ constant('APP_URL') }}assets/js/aplicacion.js"></script>
+{% endblock %}

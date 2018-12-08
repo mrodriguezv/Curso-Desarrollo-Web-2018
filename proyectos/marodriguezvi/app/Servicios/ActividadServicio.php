@@ -11,24 +11,32 @@ use App\Utilidades\UtilidadesGenerales;
 
 class ActividadServicio {
     
+    private $categorias;
+    private $actividadRepo;
 
     /* Directorio donde se almacenan las actividades */
     protected static $DIR_ACTIVIDADES = 'actividades/';
 
     protected static $ARCHIVO_INICIO_ACTIVIDAD = 'index.html';
-
-    public function __construct() {
-        
+    public function __construct(ActividadRepo $actividadRepo) {
+        $this->actividadRepo = $actividadRepo;
     }
-
+    
     //private function consultarCategorias
-
+    
     public function getCategorias() {
         return $this->categorias;
     }
-
-    //public function consultarActividades
-
+    public function consultarActividades() {
+        $consulta = $this->actividadRepo->consultarActividades();
+        $actividades = [];
+        foreach ($consulta as $actividad) {
+            $act = new Actividad($actividad);
+            array_push($actividades, $act);
+        }
+        return $actividades;
+    }
+    
     /**
      * Inserta la información de la actividad en la BD y almacena sus archivos en disco.
      */
@@ -38,7 +46,7 @@ class ActividadServicio {
         if(empty($dirCategoria)) {
             $errores['categoria'] = 'Por favor selecciona una categoría válida';
         }
-
+    
         $dirDestino = '';
         $actividadCreada = null;
         if(empty($errores)) {
@@ -58,7 +66,7 @@ class ActividadServicio {
                 }
             }
         }
-
+    
         $res = [];
         if(!empty($errores)  || empty($actividadCreada)) {
             if(!empty($dirDestino)) {
@@ -71,10 +79,10 @@ class ActividadServicio {
         }else{
             $res['actividad'] = $actividadCreada;
         }
-
+    
         return $res;
     }
-
+    
     /**
      * Determina el directorio según la categoria indicada.
      * Si la categoria es válida retorna el nombre del directorio en minúscula.
